@@ -1,19 +1,19 @@
 package structures;
 
-public class SimpleLinkedList<T> implements List<E>{
+public class SimpleLinkedList<V> implements List<V>{
     
-    private Node<T> head;
+    private Node<V> head;
 
     public SimpleLinkedList() {
         this.head = null;
     }
 
-    public void add(E e) {
-        Node<T> newNode = new Node<>(e);
+    public void add(V e) {
+        Node<V> newNode = new Node<>(e);
         if (head == null) {
             head = newNode;
         } else {
-            Node<T> current = head;
+            Node<V> current = head;
             while (current.next != null) {
                 current = current.next;
             }
@@ -23,19 +23,19 @@ public class SimpleLinkedList<T> implements List<E>{
     
     //Not implemented
     @Override
-    public void add(int index, E element) {
+    public void add(int index, V element) {
         
     }
     
     //Not implemented
     @Override
-    public boolean addAll(Collection<? extends E> c) {
+    public boolean addAll(Collection<? extends V> c) {
         return false;
     }
     
     //Not implemented
     @Override
-    public boolean addAll(int index, Collection<? extends E> c) {
+    public boolean addAll(int index, Collection<? extends V> c) {
         return false;
     }
     
@@ -65,7 +65,7 @@ public class SimpleLinkedList<T> implements List<E>{
     
     //Not implemented
     @Override
-    public E get(int index) {
+    public V get(int index) {
         return null;
     }
     
@@ -83,7 +83,7 @@ public class SimpleLinkedList<T> implements List<E>{
     
     //Not implemented
     @Override
-    public Iterator<E> iterator() {
+    public Iterator<V> iterator() {
         return null;
     }
     
@@ -95,19 +95,19 @@ public class SimpleLinkedList<T> implements List<E>{
     
     //Not implemented
     @Override
-    public ListIterator<E> listIterator() {
+    public ListIterator<V> listIterator() {
         return null;
     }
     
     //Not implemented
     @Override
-    public ListIterator<E> listIterator(int index) {
+    public ListIterator<V> listIterator(int index) {
         return null;
     }
     
     //Not implemented
     @Override
-    public E remove(int index) {
+    public V remove(int index) {
         return null;
     }
     
@@ -131,7 +131,7 @@ public class SimpleLinkedList<T> implements List<E>{
     
     //Not implemented
     @Override
-    public E set(int index, E element) {
+    public V set(int index, E element) {
         return null;
     }
     
@@ -143,7 +143,7 @@ public class SimpleLinkedList<T> implements List<E>{
     
     //Not implemented
     @Override
-    public List<E> subList(int fromIndex, int toIndex) {
+    public List<V> subList(int fromIndex, int toIndex) {
         return null;
     }
     
@@ -155,7 +155,7 @@ public class SimpleLinkedList<T> implements List<E>{
     
     //Not implemented
     @Override
-    public <T> T[] toArray(T[] a) {
+    public <V> V[] toArray(V[] a) {
         return null;
     }
     
