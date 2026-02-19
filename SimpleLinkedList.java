@@ -72,6 +72,15 @@ public class SimpleLinkedList<V> implements List<V>{
     //Not implemented
     @Override
     public int indexOf(Object o) {
+        Node<T> aux = head;
+        int i = 0;
+        while(aux != null){
+            if(aux.getData().equals(o)){
+                return i;
+            }
+            i++;
+            aux = aux.getNext();
+        }
         return -1;
     }
     
