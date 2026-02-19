@@ -1,7 +1,13 @@
 package structures;
 
-public class SimpleLinkedList<V> implements List<V>{
-    
+import java.util.Collection;
+import java.util.List;
+import java.util.ListIterator;
+
+import org.w3c.dom.Node;
+
+public class SimpleLinkedList<V> implements List<V> {
+
     private Node<V> head;
 
     public SimpleLinkedList() {
@@ -20,143 +26,173 @@ public class SimpleLinkedList<V> implements List<V>{
             current.next = newNode;
         }
     }
-    
-    //Not implemented
+
+    // Not implemented
     @Override
     public void add(int index, V element) {
-        
+
     }
-    
-    //Not implemented
+
+    // Not implemented
     @Override
     public boolean addAll(Collection<? extends V> c) {
         return false;
     }
-    
-    //Not implemented
+
+    // Not implemented
     @Override
     public boolean addAll(int index, Collection<? extends V> c) {
         return false;
     }
-    
-    //Not implemented
+
+    // Not implemented
     @Override
     public void clear() {
-        
+
     }
-    
-    //Not implemented
+
+    // Not implemented
     @Override
     public boolean contains(Object o) {
         return false;
     }
-    
-    //Not implemented
+
+    // Not implemented
     @Override
     public boolean containsAll(Collection<?> c) {
         return false;
     }
-    
-    //Not implemented
+
+    // Not implemented
     @Override
     public boolean equals(Object o) {
         return false;
     }
-    
-    //Not implemented
+
+    // Not implemented
     @Override
     public V get(int index) {
         return null;
     }
-    
-    //Not implemented
+
+    // Not implemented
     @Override
     public int indexOf(Object o) {
         return -1;
     }
-    
-    //Not implemented
+
+    // Not implemented
     @Override
     public boolean isEmpty() {
         return false;
     }
-    
-    //Not implemented
+
+    // Not implemented
     @Override
     public Iterator<V> iterator() {
         return null;
     }
-    
-    //Not implemented
+
+    // Not implemented
     @Override
     public int lastIndexOf(Object o) {
         return -1;
     }
-    
-    //Not implemented
+
+    // Not implemented
     @Override
     public ListIterator<V> listIterator() {
         return null;
     }
-    
-    //Not implemented
+
+    // Not implemented
     @Override
     public ListIterator<V> listIterator(int index) {
         return null;
     }
-    
-    //Not implemented
+
+    // Not implemented
     @Override
     public V remove(int index) {
         return null;
     }
-    
-    //Not implemented
+
+    // Not implemented
     @Override
     public boolean remove(Object o) {
         return false;
+
     }
-    
-    //Not implemented
+
     @Override
-    public boolean removeAll(Collection<?> c) {
-        return false;
+    public boolean removeAll(Collection<V> c) {
+
+        if (head == null) {
+
+            return false;
+
+        } else {
+
+            Node<V> aux = head;
+            Node<V> temp = null;
+            boolean delete = false;
+
+            while (aux != null) {
+
+                if (c.contains(aux.getData())) {
+
+                    if (temp == null) {
+                        head = aux.getNext();
+                    } else {
+                       temp.setNext(aux.getNext());
+                    }
+
+                    delete = true;
+                    
+                } else {
+                    temp = aux;
+                }
+                aux = aux.getNext();
+
+            }
+            return delete;
+        }
     }
-    
-    //Not implemented
+
+    // Not implemented
     @Override
     public boolean retainAll(Collection<?> c) {
         return false;
     }
-    
-    //Not implemented
+
+    // Not implemented
     @Override
     public V set(int index, E element) {
         return null;
     }
-    
-    //Not implemented
+
+    // Not implemented
     @Override
     public int size() {
         return 0;
     }
-    
-    //Not implemented
+
+    // Not implemented
     @Override
     public List<V> subList(int fromIndex, int toIndex) {
         return null;
     }
-    
-    //Not implemented
+
+    // Not implemented
     @Override
     public Object[] toArray() {
         return new Object[0];
     }
-    
-    //Not implemented
+
+    // Not implemented
     @Override
     public <V> V[] toArray(V[] a) {
         return null;
     }
-    
+
 }
