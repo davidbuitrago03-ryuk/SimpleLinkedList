@@ -144,7 +144,22 @@ public class SimpleLinkedList<V> implements List<V>{
     //Not implemented
     @Override
     public List<V> subList(int fromIndex, int toIndex) {
-        return null;
+        if(fromIndex < 0 || toIndex > size() || fromIndex > toIndex){
+            throw new IndexOutOfBoundsException();
+        }
+
+        SimpleLinkedList<V> list = new SimpleLinkedList<>();
+        Node<V> aux = head;
+        int actualIndex =0;
+        while(aux!=null && actualIndex<toIndex){
+            if(actualIndex >= fromIndex){
+                list.add(aux.getData());
+            }
+            aux=aux.getNext();
+            actualIndex++;
+        }
+
+        return list;
     }
     
     //Not implemented
