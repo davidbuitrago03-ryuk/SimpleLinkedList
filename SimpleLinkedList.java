@@ -63,10 +63,23 @@ public class SimpleLinkedList<V> implements List<V>{
         return false;
     }
     
-    //Not implemented
+
     @Override
-    public V get(int index) {
-        return null;
+    public V get(int index){
+        int counter =0;
+
+        if (index>=size() || index<0 ) {
+            throw new IndexOutOfBoundsException();
+        }
+
+        Node<V> next = head;
+            while (counter< index) {
+                next = next.getNext();
+                counter++;
+            }
+
+        return next.getData();
+        
     }
     
     //Not implemented
