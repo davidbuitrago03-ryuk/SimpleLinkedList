@@ -33,10 +33,38 @@ public class SimpleLinkedList<V> implements List<V>{
         return false;
     }
     
-    //Not implemented
     @Override
     public boolean addAll(int index, Collection<? extends V> c) {
-        return false;
+        if (c == null) throw new NullPointerException("Collection cannot be null");
+        if (index < 0 || index > size()) throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + size());
+        if (c.isEmpty()) return false;
+
+        for (V element : c) {
+            if (element == null) throw new NullPointerException("Collection cannot contain null elements");
+            if (!(element instanceof Object)) throw new ClassCastException("Element type is not compatible with this list");
+        }
+
+        Node<V> prev = null;
+        Node<V> current = head;
+
+        for (int i = 0; i < index; i++) {
+            prev = current;
+            current = current.next;
+        }
+
+        for (V element : c) {
+            Node<V> newNode = new Node<>(element);
+            if (prev == null) {
+                newNode.next = head;
+                head = newNode;
+            } else {
+                newNode.next = prev.next;
+                prev.next = newNode;
+            }
+            prev = newNode;
+        }
+
+        return true;
     }
     
     //Not implemented
