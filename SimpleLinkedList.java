@@ -33,11 +33,19 @@ public class SimpleLinkedList<V> implements List<V>{
     public void add(int index, V element) {
 
     }
-
-    // Not implemented
+    
     @Override
     public boolean addAll(Collection<? extends V> c) {
-        return false;
+        boolean modified = false;
+        if ( c.isEmpty()) {
+            modified = false; 
+        }else{ 
+                for (T dataCollection : c) {
+                add(dataCollection); 
+                modified = true;
+            }
+            }
+        return modified; 
     }
     
     @Override
