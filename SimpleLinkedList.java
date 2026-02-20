@@ -1,5 +1,11 @@
 package structures;
 
+import java.util.Collection;
+import java.util.List;
+import java.util.ListIterator;
+
+import org.w3c.dom.Node;
+
 public class SimpleLinkedList<V> implements List<V>{
     
     private Node<V> head;
@@ -54,7 +60,13 @@ public class SimpleLinkedList<V> implements List<V>{
     //Not implemented
     @Override
     public boolean containsAll(Collection<?> c) {
-        return false;
+        Iterator<?> it = c.iterator();
+        while (it.hasNext()){
+            if(!this.contains(it.next())){
+                return false;
+            }
+        }
+        return true;
     }
     
     //Not implemented
