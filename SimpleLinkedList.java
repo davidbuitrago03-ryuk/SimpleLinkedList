@@ -302,7 +302,22 @@ public class SimpleLinkedList<V> implements List<V>{
     // Not implemented
     @Override
     public <V> V[] toArray(V[] a) {
-        return null;
+        int size=size();
+        if (a.length<size) {
+            a=java.util.Arrays.copyOf(a, size);
+        }
+        Node aux=head;
+        int count=0;
+        while (aux!=null) {
+            a[count]=(V)aux.getData();
+            count++;
+            aux=aux.getNext();
+        }
+
+        if (a.length>size) {
+            a[size]=null;
+        }
+        return a;
     }
     
 }
