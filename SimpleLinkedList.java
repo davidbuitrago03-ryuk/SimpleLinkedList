@@ -1,5 +1,10 @@
 package structures;
 
+import java.util.List;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.ListIterator;
+
 public class SimpleLinkedList<V> implements List<V>{
     
     private Node<V> head;
@@ -8,7 +13,8 @@ public class SimpleLinkedList<V> implements List<V>{
         this.head = null;
     }
 
-    public void add(V e) {
+    @Override
+    public boolean add(V e) {
         Node<V> newNode = new Node<>(e);
         if (head == null) {
             head = newNode;
@@ -19,50 +25,77 @@ public class SimpleLinkedList<V> implements List<V>{
             }
             current.next = newNode;
         }
+        return true;
     }
-    
-    //Not implemented
+
+    // Not implemented
     @Override
     public void add(int index, V element) {
-        
+
     }
-    
-    //Not implemented
+
+    // Not implemented
     @Override
     public boolean addAll(Collection<? extends V> c) {
         return false;
     }
     
-    //Not implemented
     @Override
     public boolean addAll(int index, Collection<? extends V> c) {
-        return false;
+        if (c == null) throw new NullPointerException("Collection cannot be null");
+        if (index < 0 || index > size()) throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + size());
+        if (c.isEmpty()) return false;
+        for (V element : c) {
+            if (element == null) throw new NullPointerException("Collection cannot contain null elements");
+            if (!(element instanceof Object)) throw new ClassCastException("Element type is not compatible with this list");
+        }
+
+        Node<V> prev = null;
+        Node<V> current = head;
+        for (int i = 0; i < index; i++) {
+            prev = current;
+            current = current.next;
+        }
+
+        Node<V> insertionPoint = current; 
+
+        for (V element : c) {
+            Node<V> newNode = new Node<>(element);
+            newNode.next = insertionPoint;
+            if (prev == null) {
+                head = newNode;
+            } else {
+                prev.next = newNode;
+            }
+            prev = newNode;
+        }
+
+        return true;
     }
     
     //Not implemented
     @Override
     public void clear() {
-        
+
     }
-    
-    //Not implemented
+
+    // Not implemented
     @Override
     public boolean contains(Object o) {
         return false;
     }
-    
-    //Not implemented
+
+    // Not implemented
     @Override
     public boolean containsAll(Collection<?> c) {
         return false;
     }
-    
-    //Not implemented
+
+    // Not implemented
     @Override
     public boolean equals(Object o) {
         return false;
-    }
-    
+    }    
 
     @Override
     public V get(int index){
@@ -81,92 +114,139 @@ public class SimpleLinkedList<V> implements List<V>{
         return next.getData();
         
     }
-    
-    //Not implemented
+
+    // Not implemented
     @Override
     public int indexOf(Object o) {
+        Node<T> aux = head;
+        int i = 0;
+        while(aux != null){
+            if(aux.getData().equals(o)){
+                return i;
+            }
+            i++;
+            aux = aux.getNext();
+        }
         return -1;
     }
-    
-    //Not implemented
+
+    // Not implemented
     @Override
     public boolean isEmpty() {
         return false;
     }
-    
-    //Not implemented
+
+    // Not implemented
     @Override
     public Iterator<V> iterator() {
         return null;
     }
-    
-    //Not implemented
+
+    // Not implemented
     @Override
     public int lastIndexOf(Object o) {
         return -1;
     }
-    
-    //Not implemented
+
+    // Not implemented
     @Override
     public ListIterator<V> listIterator() {
         return null;
     }
-    
-    //Not implemented
+
+    // Not implemented
     @Override
     public ListIterator<V> listIterator(int index) {
         return null;
     }
-    
-    //Not implemented
+
+    // Not implemented
     @Override
     public V remove(int index) {
         return null;
     }
-    
-    //Not implemented
+
+    // Not implemented
     @Override
     public boolean remove(Object o) {
         return false;
+
     }
-    
-    //Not implemented
+
     @Override
-    public boolean removeAll(Collection<?> c) {
-        return false;
+    public boolean removeAll(Collection<V> c) {
+
+        if (head == null) {
+
+            return false;
+
+        } else {
+
+            Node<V> aux = head;
+            Node<V> prev = null;
+            boolean delete = false;
+
+            while (aux != null) {
+
+                if (c.contains(aux.getData())) {
+
+                    if (prev == null) {
+                        head = aux.getNext();
+                    } else {
+                       prev.setNext(aux.getNext());
+                    }
+
+                    delete = true;
+                    
+                } else {
+                    prev = aux;
+                }
+                aux = aux.getNext();
+
+            }
+            return delete;
+        }
     }
-    
-    //Not implemented
+
+    // Not implemented
     @Override
     public boolean retainAll(Collection<?> c) {
         return false;
     }
     
-    //Not implemented
     @Override
-    public V set(int index, E element) {
-        return null;
+    public V set(int index, V element) {
+        if (index < 0 || index >= size()) {
+            throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + size());
+        }
+        Node<V> current = head;
+        for (int i = 0; i < index; i++) {
+            current = current.next;
+        }
+        V oldValue = current.value;
+        current.value = element;
+        return oldValue;
     }
-    
-    //Not implemented
+
+    // Not implemented
     @Override
     public int size() {
         return 0;
     }
-    
-    //Not implemented
+
+    // Not implemented
     @Override
     public List<V> subList(int fromIndex, int toIndex) {
         return null;
     }
-    
-    //Not implemented
+
+    // Not implemented
     @Override
     public Object[] toArray() {
         return new Object[0];
     }
-    
-    //Not implemented
+
+    // Not implemented
     @Override
     public <V> V[] toArray(V[] a) {
         return null;
