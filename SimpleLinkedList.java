@@ -1,6 +1,7 @@
 package structures;
 
-public class SimpleLinkedList<V> implements List<V>{
+
+public class SimpleLinkedList<V> implements List<V> {
     
     private Node<V> head;
 
@@ -138,7 +139,15 @@ public class SimpleLinkedList<V> implements List<V>{
     //Not implemented
     @Override
     public int size() {
-        return 0;
+        Node <V> aux= head;
+        int counter=0;
+
+        while(aux!=null){
+            counter++;
+            aux = aux.getNext();
+        }
+
+        return counter;
     }
     
     //Not implemented
